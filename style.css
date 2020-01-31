@@ -1,10 +1,11 @@
 * {
     border: 0;
     padding: 0;
+    /* 这里我和方方老师不一样的地方, body多了margin:8px, 则我这里初始化一下margin为0, 可达到刷新页面没有滚动条效果*/
+    margin: 0;
     box-sizing: border-box;
 }
 
 #canvas {
-    height: 100vh;
-    border: 1px solid red;
+    display: block;
 }

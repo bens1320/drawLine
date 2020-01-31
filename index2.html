@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ch-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="canvas" width="100" height="100"></canvas>
+    <script>
+        let canvas = document.getElementById('canvas');
+        canvas.width = document.documentElement.clientWidth
+        canvas.height = document.documentElement.clientHeight
+
+        // 画线
+        let ctx = canvas.getContext('2d');
+
+        // 图形的填充颜色
+        ctx.fillStyle = 'green';
+        // 图形轮廓的颜色
+        ctx.strokeStyle = 'green'
+
+        //开关
+        let painting = false;
+
+        // 按下开始画
+        canvas.onmousedown = () => {
+            painting = true
+        }
+
+        canvas.onmousemove = (e) => {
+            if (painting === true) {
+                ctx.beginPath();
+                ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fill();
+            } else {
+                console.log("什么都不做")
+            }
+        }
+
+        // 松开停止画
+        canvas.onmouseup = (e) => {
+            painting = false
+        }
+    </script>
+</body>
+
+</html>
