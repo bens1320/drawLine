@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ch-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <canvas id="canvas" width="100" height="100"></canvas>
+    <script>
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        let canvas = document.getElementById('canvas');
+
+        // 获取当前浏览器的宽高
+        canvas.width = document.documentElement.clientWidth
+        canvas.height = document.documentElement.clientHeight
+
+        // 画线
+        let ctx = canvas.getContext('2d');
+        // 图形的填充颜色
+        ctx.fillStyle = 'green';
+        // 图形轮廓的颜色
+        ctx.strokeStyle = 'green'
+        ctx.lineWidth = '30'
+        // 将线的两头变圆
+        ctx.lineCap = "round";
+
+        //开关
+        let painting = false;
+        // 记录上一次的clientX, clientY
+        let last
+
+        // 按下开始画
+        canvas.onmousedown = (e) => {
+            painting = true
+            last = [e.clientX, e.clientY]
+        }
+
+        canvas.onmousemove = (e) => {
+            if (painting === true) {
+                drawLine(last[0], last[1], e.clientX, e.clientY)
+                last = [e.clientX, e.clientY]
+            }
+        }
+
+        // 松开停止画
+        canvas.onmouseup = (e) => {
+            painting = false
+        }
+    </script>
+</body>
+
+</html>
